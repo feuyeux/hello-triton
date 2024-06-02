@@ -51,8 +51,18 @@ Login Succeeded
 
 DOCKER_NAME="yolov8-triton"
 docker build -t $DOCKER_NAME -f Dockerfile .
+```
 
+```sh
 docker run --rm -p8000:8000 -p8001:8001 -p8002:8002 \
+-v $(PWD)/models:/models \
+yolov8-triton \
+tritonserver --model-repository=/models
+```
+
+```sh
+docker run --gpus=1 \
+--rm -p8000:8000 -p8001:8001 -p8002:8002 \
 -v $(PWD)/models:/models \
 yolov8-triton \
 tritonserver --model-repository=/models
