@@ -2,3 +2,4 @@
 .DS_Store
 *.bkp
 __pycache__
+triton_env

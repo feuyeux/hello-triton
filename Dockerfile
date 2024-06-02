@@ -1,3 +1,4 @@
+# https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags
 FROM nvcr.io/nvidia/tritonserver:24.05-py3
 
 # Install dependencies
