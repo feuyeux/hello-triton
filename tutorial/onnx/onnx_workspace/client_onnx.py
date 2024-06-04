@@ -3,7 +3,7 @@ import tritonclient.http as httpclient
 from PIL import Image
 from torchvision import transforms
 from tritonclient.utils import triton_to_np_dtype
-
+import os
 
 # preprocessing function
 def rn50_preprocess(img_path="header-gulf-birds.jpg"):
@@ -21,8 +21,10 @@ def rn50_preprocess(img_path="header-gulf-birds.jpg"):
 
 transformed_img = rn50_preprocess()
 
+connect_to = os.getenv("TRITON_SERVER")
+print("Connecting to Triton server:", connect_to)
 # Setting up client
-client = httpclient.InferenceServerClient(url="localhost:8000")
+client = httpclient.InferenceServerClient(url=connect_to + ":8000")
 
 inputs = httpclient.InferInput("data_0", transformed_img.shape, datatype="FP32")
 inputs.set_data_from_numpy(transformed_img, binary_data=True)

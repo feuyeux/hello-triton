@@ -1,4 +1,4 @@
 # https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tritonserver/tags
 FROM nvcr.io/nvidia/tritonserver:24.05-py3-sdk
-
-RUN pip install torchvision
+RUN pip install torchvision -i https://pypi.tuna.tsinghua.edu.cn/simple
+COPY onnx_workspace/ .
